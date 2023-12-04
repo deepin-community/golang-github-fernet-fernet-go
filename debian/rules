@@ -1,4 +1,12 @@
 #!/usr/bin/make -f
+export DH_GOLANG_INSTALL_ALL := 1
 
 %:
-	dh $@
+	dh $@ --buildsystem=golang --with=golang
+
+override_dh_auto_install:
+	dh_auto_install
+
+	rm -rf debian/tmp/usr/share/gocode/src/github.com/fernet/fernet-go/Readme
+	rm -rf debian/tmp/usr/share/gocode/src/github.com/fernet/fernet-go/License
+	rm -rf debian/tmp/usr/share/gocode/src/github.com/fernet/fernet-go/.gitignore
